@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>数当てゲーム</title>
+</head>
+<body>
+    <p>Guess!</p>
+    <p>このゲームは１から１００から選ばれた一つの数字を見つけるゲームです.</p>
+    <p>入力した数字を元に「正解！」「もっと大きい！」「もっと小さい！」の３つの返答を行います.</p>
+    <form action="/find_number"method="get">
+        Guess!（予想する数字を入力してください）<input type="number"name="number"id="number"><br>
+        <input type="submit"value="送信">
+    </form>
+    <p>guessの結果:<%= judgement %></p>
+    <p>現在<%= time %>回目</p>
+</body>
+</html>

@@ -61,4 +61,107 @@ app.get("/janken", (req, res) => {
   res.render( 'janken', display );
 });
 
+let add = 0;
+let one = 0;
+let two = 0;
+let three = 0;
+let four = 0;
+let count = 0;
+app.get("/gatya", (req, res) => {
+  // セッションに count を保存する
+ 
+
+  // 初期確率設定
+  const baseProbabilities = {
+    1: 0.006,  
+    2: 0.05,   
+    3: 0.05,   
+    4: 0.894   
+  };
+  const maxProbability = 1.00;  
+
+  function getRandomValue() {
+      const randomNum = Math.random();
+      let probabilities = {
+        1: baseProbabilities[1] + (count >= 73 ? (count - 73) * 0.0622 : 0),
+        2: baseProbabilities[2] - (count >= 73 ? (count - 73) * 0.00313 : 0),
+        3: baseProbabilities[3] - (count >= 73 ? (count - 73) * 0.00313 : 0),
+        4: baseProbabilities[4] - (count >= 73 ? (count - 73) * 0.0559 : 0),
+    };
+    
+
+      // 確率を制限
+      probabilities[1] = Math.min(Math.max(probabilities[1], 0), maxProbability);
+      probabilities[2] = Math.min(Math.max(probabilities[2], 0), maxProbability);
+      probabilities[3] = Math.min(Math.max(probabilities[3], 0), maxProbability);
+      probabilities[4] = Math.min(Math.max(probabilities[4], 0), maxProbability);
+
+      let cumulative = 0;
+      let num;
+      for (let key in probabilities) {
+          cumulative += probabilities[key];
+          if (randomNum < cumulative) {
+              num = parseInt(key);
+              break;
+          }
+      }
+
+      // `num = 1` が出なかった場合、`count` を増加
+      if (num === 1) {
+          count = 0;  // 出現したのでカウントをリセット
+          add ++;
+      } else {
+          count++;  // 特定の値が出なかったのでカウントを増やす
+          add ++;
+      }
+
+      return num;
+  }
+
+  const num = getRandomValue();
+
+  let gatya = '';
+  if (num === 1) {
+      gatya = '星５';
+      one ++;
+  } else if (num === 2) {
+      gatya = '星４(キャラ)';
+      two ++;
+  } else if (num === 3) {
+      gatya = '星４(武器)';
+      three ++;
+  } else if (num === 4) {
+      gatya = '星３';
+      four ++;
+  }
+
+  console.log('あなたが獲得したのは' + gatya + 'です');
+  res.render('gatya', { number: num, gatya: gatya, count: add, one: one, two: two, three: three,four: four });
+});
+
+let secretNumber = Math.floor(Math.random() * 100) + 1; 
+let time = 0;
+app.get("/find_number", (req, res) => {
+  let judgement = '';
+
+  const guess = +req.query.number; 
+  function guessNumber(secret) {
+    if(guess === secret){
+      secretNumber = Math.floor(Math.random() * 100) + 1;      
+      time = 0;
+      judgement = '正解！';
+    }else if (guess < secret) {
+      time ++;
+      judgement = 'もっと大きい！';
+    }else if (guess > secret) {
+      time ++;
+      judgement = 'もっと小さい！';
+    }
+  }
+
+  guessNumber(secretNumber);
+  console.log("guess!");
+  res.render('find_number',{ time: time, judgement: judgement});
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

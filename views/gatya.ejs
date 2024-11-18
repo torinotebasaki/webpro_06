@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>原神ガチャ</title>
+</head>
+<body>
+    <p>あなたのガチャの結果は<%= gatya %>です.</p>
+    <p>現在<%= count %>回しています.</p>
+    <p>判定：<%= number %></p>
+    <p>獲得した数:星5:<%= one %> 星４(キャラ):<%= two %> 星4(武器):<%= three %> 星3:<%= four %></p>
+    <hr>
+    <form action="/gatya">
+        <button type="submit" name="ガチャ" required>ガチャ</button>
+    </form>   
+</body>
+</html>
