@@ -135,7 +135,6 @@ app.get("/gatya", (req, res) => {
   console.log('あなたが獲得したのは' + gatya + 'です');
   res.render('gatya', { 
     number: num, 
-    count2: count,
     gatya: gatya, 
     count: add, 
     one: one, 
