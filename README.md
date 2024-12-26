@@ -1,5 +1,14 @@
 # webpro_06 app5.jsの仕様書
-## app5.jsに実装されているプログラム
+## app5.jsに実装されている機能
+*hello1
+*hello2
+*icon
+*luck
+*janken
+*gatya
+*find_number
+##　それぞれの機能の説明
+
 ## 新しく作成したプログラム
 今回の課題においてapp5.jsに以下のプログラムを追加した.
 1. ガチャ
