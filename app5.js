@@ -136,7 +136,8 @@ app.get("/gatya", (req, res) => {
   res.render('gatya', { 
     number: num, 
     gatya: gatya, 
-    count: add, 
+    count: add,
+    count2:count, 
     one: one, 
     two: two, 
     three: three,
