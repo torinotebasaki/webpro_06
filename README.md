@@ -1,13 +1,13 @@
 # app5.jsの仕様書
 ## app5.jsに実装されている機能
 app5.jsには以下の機能を実装した.
-*hello1
-*hello2
-*icon
-*luck
-*janken
-*gatya
-*find_number
+1. hello1
+1. hello2
+1. icon
+1. luck
+1. janken
+1. gatya
+1. find_number
 ## それぞれの機能の説明(ユーザーができること)
 1. hello1
 * この機能はプログラム上で指定した文字をweb上に表示できるというものだ.
