@@ -9,6 +9,7 @@
     <p>現在<%= count %>回しています.</p>
     <p>判定：<%= number %></p>
     <p>獲得した数:星5:<%= one %> 星４(キャラ):<%= two %> 星4(武器):<%= three %> 星3:<%= four %></p>
+    <p>星５の確率<%= (rate * 100).toFixed(2) %>%</p>
     <hr>
     <form action="/gatya">
         <button type="submit" name="ガチャ" required>ガチャ</button>
