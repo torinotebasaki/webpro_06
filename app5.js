@@ -71,8 +71,8 @@ let two = 0;
 let three = 0;
 let four = 0;
 let count = 0;
+let probabilities = {}; // スコープを関数外に変更
 app.get("/gatya", (req, res) => {
-  let probabilities = {}; // スコープを関数外に変更
   const baseProbabilities = {
     1: 0.006,  
     2: 0.05,   
