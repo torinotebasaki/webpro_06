@@ -85,6 +85,7 @@ app.post("/add", (req, res) => {
 // これより下はBBS関係
 app.post("/check", (req, res) => {
   // 本来はここでDBMSに問い合わせる
+  console.log(bbs);  // bbs配列の中身を確認
   res.json( {number: bbs.length });
 });
 
@@ -104,5 +105,25 @@ app.post("/post", (req, res) => {
   bbs.push( { name: name, message: message } );//配列にデータを追加
   res.json( {number: bbs.length } );
 });
+
+app.post("/reset", (req, res) => {
+  // bbs配列をリセット（データを削除）
+  bbs = [];  // 配列を空にすることで、すべてのデータを消去
+  res.json({ message: "コメントがリセットされました", number: bbs.length });
+});
+
+app.post("/reset-name", (req, res) => {
+  // 名前をリセット
+  bbs.forEach(comment => {
+      comment.name = '';  // すべてのコメントの名前をリセット
+  });
+  res.json({ message: "名前がリセットされました" });
+});
+
+app.post("/check", (req, res) => {
+  // 現在の投稿数を返す
+  res.json({ number: bbs.length });
+});
+
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

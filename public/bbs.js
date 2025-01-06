@@ -86,3 +86,70 @@ document.querySelector('#check').addEventListener('click', () => {
         }
     });
 });
+
+document.querySelector('#reset').addEventListener('click', () => {
+    const params = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    fetch('/reset', params)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Error');
+            }
+            // コメントの表示を消す
+            document.querySelector('#bbs').innerHTML = '';
+            return response.json();
+        })
+        .then( (response) => {
+            console.log( response.message );
+        });
+});
+
+
+document.querySelector('#reset-name').addEventListener('click', () => {
+    const params = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    fetch('/reset-name', params)
+        .then( (response) => {
+            if (!response.ok) {
+                throw new Error('Error');
+            }
+            // クライアント側でも名前欄をリセット
+            document.querySelector('#name').value = '';
+            return response.json();
+        })
+        .then( (response) => {
+            console.log(response.message);  // リセット結果を表示
+        });
+});
+
+document.querySelector('#show-post-count').addEventListener('click', () => {
+    const params = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    fetch('/check', params)
+        .then( (response) => {
+            return response.json();  // 最初にJSONに変換
+        })
+        .then( (response) => {
+            // 投稿数を表示
+            document.querySelector('#post-count').textContent = `現在の投稿数: ${response.number}`;
+            // fetch()で受け取ったデータをJSON形式にしてからじゃないとresponse.number使えない
+            // response.number は、fetch() が成功してサーバーからレスポンスが返ってきた後でしか取得できない
+            console.log(response);  // データを表示
+        });
+});
+
