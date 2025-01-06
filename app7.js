@@ -120,7 +120,7 @@ app.post("/reset-name", (req, res) => {
   res.json({ message: "名前がリセットされました" });
 });
 
-app.post("/check", (req, res) => {
+app.post("/number_check", (req, res) => {
   // 現在の投稿数を返す
   res.json({ number: bbs.length });
 });

@@ -102,6 +102,7 @@ document.querySelector('#reset').addEventListener('click', () => {
             }
             // コメントの表示を消す
             document.querySelector('#bbs').innerHTML = '';
+            number = 0;
             return response.json();
         })
         .then( (response) => {
@@ -140,7 +141,7 @@ document.querySelector('#show-post-count').addEventListener('click', () => {
         }
     };
 
-    fetch('/check', params)
+    fetch('/number_check', params)
         .then( (response) => {
             return response.json();  // 最初にJSONに変換
         })
