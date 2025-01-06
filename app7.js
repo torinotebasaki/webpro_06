@@ -115,9 +115,16 @@ app.post("/reset", (req, res) => {
 app.post("/reset-name", (req, res) => {
   // 名前をリセット
   bbs.forEach(comment => {
-      comment.name = '';  // すべてのコメントの名前をリセット
+    comment.name = '';  // すべてのコメントの名前をリセット
   });
   res.json({ message: "名前がリセットされました" });
+});
+
+app.post("/reset-message", (req, res) => {
+  bbs.forEach(comment => {
+    comment.message = '';
+  });
+  res.json({ message: "メッセージがリセットされました" });
 });
 
 app.post("/number_check", (req, res) => {

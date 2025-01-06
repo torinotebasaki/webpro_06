@@ -133,6 +133,28 @@ document.querySelector('#reset-name').addEventListener('click', () => {
         });
 });
 
+document.querySelector('#reset-message').addEventListener('click', () => {
+    const params = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    fetch('/reset-message', params)
+        .then( (response) => {
+            if (!response.ok) {
+                throw new Error('Error');
+            }
+            // クライアント側でも名前欄をリセット
+            document.querySelector('#message').value = '';
+            return response.json();
+        })
+        .then( (response) => {
+            console.log(response.message);  // リセット結果を表示
+        });
+});
+
 document.querySelector('#show-post-count').addEventListener('click', () => {
     const params = {
         method: "POST",
