@@ -119,18 +119,18 @@ document.querySelector('#reset-name').addEventListener('click', () => {
         }
     };
 
-    fetch('/reset-name', params)
-        .then( (response) => {
-            if (!response.ok) {
-                throw new Error('Error');
-            }
-            // クライアント側でも名前欄をリセット
-            document.querySelector('#name').value = '';
-            return response.json();
-        })
-        .then( (response) => {
-            console.log(response.message);  // リセット結果を表示
-        });
+        fetch('/reset-name', params)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Error');
+        }
+        return response.json();
+    })
+    .then((response) => {
+        // サーバー側の処理が成功したら、クライアント側の入力欄をリセット
+        document.querySelector('#name').value = '';
+        console.log(response.message);
+    });                             
 });
 
 document.querySelector('#reset-message').addEventListener('click', () => {
@@ -163,7 +163,7 @@ document.querySelector('#show-post-count').addEventListener('click', () => {
         }
     };
 
-    fetch('/number_check', params)
+    fetch('/number-check', params)
         .then( (response) => {
             return response.json();  // 最初にJSONに変換
         })

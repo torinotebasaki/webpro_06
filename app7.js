@@ -127,7 +127,7 @@ app.post("/reset-message", (req, res) => {
   res.json({ message: "メッセージがリセットされました" });
 });
 
-app.post("/number_check", (req, res) => {
+app.post("/number-check", (req, res) => {
   // 現在の投稿数を返す
   res.json({ number: bbs.length });
 });
